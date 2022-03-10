@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/app_logo"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:fontFamily="@font/nunito_black"
@@ -31,6 +32,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/meal"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/app_name" />
+
+    <Button
+        android:id="@+id/btn_search_a_meal"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#c52d2f"
+        android:text="@string/search_a_meal"
+        android:fontFamily="@font/nunito_black"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
