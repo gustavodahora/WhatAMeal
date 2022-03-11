@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import dev.gustavodahora.whatameal.model.Meal
 import dev.gustavodahora.whatameal.recipeapi.ApiUtil
 
 class MainActivity : AppCompatActivity() {
@@ -39,5 +40,9 @@ class MainActivity : AppCompatActivity() {
     private fun callApiRandom() {
         val apiUtil = ApiUtil( this, this, this)
         apiUtil.callApi()
+    }
+
+    fun startRecycleView(meal: Meal) {
+
     }
 }

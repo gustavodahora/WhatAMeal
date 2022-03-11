@@ -42,10 +42,11 @@ class ApiUtil(
                     response: Response<Recipe?>
                 ) {
                     meal = response.body()!!.meals[0]
+                    mainActivity?.startRecycleView(meal)
                 }
 
                 override fun onFailure(call: Call<Recipe?>, t: Throwable) {
-                    Toast.makeText(context, "PALMEIRAS MUNDIAL", Toast.LENGTH_SHORT).show()
+
                 }
             })
         } catch (e: Exception) {
