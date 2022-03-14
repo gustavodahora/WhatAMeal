@@ -2,4 +2,11 @@
     <string name="app_name">What a Meal?</string>
     <string name="this_is_a_soup">This is a soup</string>
     <string name="search_a_meal">Search a meal</string>
+    <string name="recipe_tytle">CHAMA MEU PATRONES</string>
+    <string name="recipe_image">Recipe Image</string>
+    <string name="play_button">Play button</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="placeholder_ingredient">Ingredient item</string>
+    <string name="measure_placeholder">200g</string>
+    <string name="dot_counting">Dot counting</string>
 </resources>
