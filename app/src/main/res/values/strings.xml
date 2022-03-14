@@ -9,4 +9,6 @@
     <string name="placeholder_ingredient">Ingredient item</string>
     <string name="measure_placeholder">200g</string>
     <string name="dot_counting">Dot counting</string>
+    <string name="food_meal_ingredients">Food Meal Ingredients</string>
+    <string name="instructions">Instructions</string>
 </resources>

@@ -1,5 +1,7 @@
 package dev.gustavodahora.whatameal
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.androidanimations.library.Techniques
@@ -15,6 +18,7 @@ import com.squareup.picasso.Picasso
 import dev.gustavodahora.whatameal.model.Ingredients
 import dev.gustavodahora.whatameal.model.Meal
 import dev.gustavodahora.whatameal.recipeapi.ApiUtil
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +29,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recipeIconStart: LinearLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var containerItems: LinearLayout
+    private lateinit var containterItemsInstructions: LinearLayout
+    private lateinit var tvInstructions: TextView
+    private lateinit var cardView: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         recipeIconStart = findViewById(R.id.recipe_icon_start)
         recyclerView = findViewById(R.id.recycler_view)
         containerItems = findViewById(R.id.container_items)
+        containterItemsInstructions = findViewById(R.id.container_items_instructions)
+        cardView = findViewById(R.id.cardView)
+        tvInstructions = findViewById(R.id.tv_instructions)
     }
 
     private fun setupClickEvents() {
@@ -58,12 +68,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun callYoutubeVideo(urlVideo: String?) {
+        val uri: Uri = Uri.parse(urlVideo) // missing 'http://' will cause crashed
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
+    }
+
     private fun callApiRandom() {
         val apiUtil = ApiUtil( this, this, this)
         apiUtil.callApi()
     }
 
     fun startRecycleView(meal: Meal) {
+        cardView.setOnClickListener { callYoutubeVideo(meal.strYoutube) }
+        tvInstructions.text = meal.strInstructions
+
         recipeTitle.text = meal.strMeal
         meal.strMealThumb?.let {
             Picasso.get().load(it).error(R.drawable.error_image).into(recipeImage)
@@ -85,6 +104,7 @@ class MainActivity : AppCompatActivity() {
                 .duration(500)
                 .onStart {
                     containerItems.visibility = View.VISIBLE
+                    containterItemsInstructions.visibility = View.VISIBLE
                 }
                 .playOn(containerItems)
         }, 1000)
@@ -98,6 +118,8 @@ class MainActivity : AppCompatActivity() {
                 .duration(500)
                 .onStart {
                     containerItems.visibility = View.VISIBLE
+                    containterItemsInstructions.visibility = View.VISIBLE
+
                 }
                 .playOn(containerItems)
         }
